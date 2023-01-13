@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<Order>
+@{
+    var emptyOrder = new Order();
+}
+<partial name="List" model=@Model>
+<partial name="Form" model=@emptyOrder>

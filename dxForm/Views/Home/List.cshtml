@@ -1,0 +1,26 @@
+﻿@(Html.DevExtreme().DataGrid<Order>()
+    .DataSource(SampleData.Orders)
+    .Selection(s => s.Mode(SelectionMode.Single))
+    .HoverStateEnabled(true)
+    .ShowBorders(true)
+    .OnSelectionChanged("selectionChanged")
+    .Columns(columns => {
+        columns.AddFor(m => m.ID);
+        columns.AddFor(m => m.Name);
+        columns.AddFor(m => m.Price);
+    })
+)
+
+@(Html.DevExtreme().Button()
+            .Text("Edit")
+            .ID("editButton")
+            .Type(ButtonType.Default)
+            .StylingMode(ButtonStylingMode.Contained)
+            .Width("6em")
+            .OnClick(@<text>
+                () => {
+                showPopUp();
+                }
+            </text>)
+            )
+

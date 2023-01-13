@@ -1,0 +1,32 @@
+﻿@model Order
+@(Html.DevExtreme().Popup()
+.ID("editPopUp")
+.Width("80%")
+.ShowTitle(true)
+.Title("Update")
+.Disabled(false)
+.DeferRendering(false)
+.ContentTemplate(@<text>
+        @using (Html.BeginForm("Post", "Home", FormMethod.Post))
+        {
+            using (Html.DevExtreme().ValidationGroup())
+            {
+                @Html.AntiForgeryToken()
+                @*@Html.HiddenFor(m=>m.ID)*@
+                <input id="inhide" type="hidden" name="ID"/>
+                @(Html.DevExtreme().Form<Order>()
+                .ID("form")
+                .Items(items =>
+                {
+                    @*items.AddSimpleFor(m => m.ID);*@
+                    items.AddSimpleFor(m => m.Name);
+                    items.AddSimpleFor(m => m.Price);
+                    items.AddButton().ButtonOptions(b => b.Text("Update")
+                    .Type(ButtonType.Success)
+                    .UseSubmitBehavior(true));
+                })
+                )
+                        <input type="submit" />
+            }
+        }
+</text>))
